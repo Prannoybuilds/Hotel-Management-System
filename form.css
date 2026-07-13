@@ -1,0 +1,268 @@
+ /* ============================================================
+   TAJ HOTELS — FORM UI
+   Shared by every form page (Customer, Room, Booking, Payment, etc.)
+   Plugs into style.css's variables/theme system — no duplication.
+============================================================ */
+
+/* ---------- Form header text ---------- */
+.form-page-header{ text-align:center; margin-bottom:32px; }
+.form-page-header h2{
+  font-family:var(--display);
+  font-size:38px;
+  font-weight:600;
+  color:var(--ink);
+  margin-bottom:8px;
+}
+.form-page-header p{
+  font-family:var(--accent);
+  color:var(--gold-deep);
+  font-size:18px;
+  font-style:italic;
+}
+/* ---------- Form Hero (image + glass panel) ---------- */
+.form-hero{
+  position:relative;
+  width:100%;
+  min-height:620px;
+  border-radius:20px;
+  overflow:hidden;
+  margin-bottom:32px;
+  display:flex;
+  align-items:center;
+  isolation:isolate;
+}
+
+.form-hero-image{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:0;
+}
+
+.form-hero-overlay{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  background:linear-gradient(
+    100deg,
+    rgba(20,14,8,.35) 0%,
+    rgba(20,14,8,.12) 40%,
+    rgba(20,14,8,0) 65%
+  );
+}
+
+.form-panel{
+  position:relative;
+  z-index:2;
+  margin-left:6%;
+  width:min(680px, 92%);
+
+  background:rgba(250, 246, 236, .88);
+  backdrop-filter:blur(22px) saturate(160%);
+  -webkit-backdrop-filter:blur(22px) saturate(160%);
+
+  border:1.5px solid var(--gold-deep);   /* was faint white — now solid gold-brown */
+  border-radius:18px;
+  box-shadow:0 25px 60px rgba(0,0,0,.3), inset 0 0 0 1px rgba(198,161,91,.15);
+
+  padding:48px 52px;
+}
+
+[data-theme="dark"] .form-panel{
+  background:rgba(22, 17, 12, .88);
+  border:1.5px solid var(--gold);
+  box-shadow:0 25px 60px rgba(0,0,0,.55), inset 0 0 0 1px rgba(198,161,91,.1);
+}
+
+@media(max-width:900px){
+  .form-hero{ min-height:auto; padding:20px 0; }
+  .form-panel{
+    margin:0 16px;
+    width:calc(100% - 32px);
+    padding:30px 26px;
+  }
+}
+.form-panel .form-page-header{
+  text-align:left;
+  margin-bottom:0;
+  padding-bottom:22px;
+  border-bottom:1px solid var(--gold-deep);
+}
+
+.form-panel .form-page-header h2{
+  margin-bottom:6px;
+}
+
+.form-panel .form-card{
+  margin-top:28px;   /* pushes the field grid down, away from the divider */
+}
+/* ---------- Form card ---------- */
+.form-card{ width:100%; }
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:22px;
+}
+
+.form-group{ display:flex; flex-direction:column; }
+.form-group.full-width{ grid-column:1/-1; }
+
+.form-group label{
+  font-size:11.5px;
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  color:var(--gold-deep);
+  font-weight:700;
+  margin-bottom:8px;
+}
+
+.form-group input,
+.form-group select{
+  height:48px;
+  padding:0 16px;
+  border-radius:10px;
+  border:1px solid var(--line);
+  background:var(--cream);
+  color:var(--ink);
+  font-size:14px;
+  transition:.2s;
+}
+
+.form-group input::placeholder{ color:var(--ink-soft); }
+
+.form-group input:focus,
+.form-group select:focus{
+  border-color:var(--gold);
+  box-shadow:0 0 0 3px rgba(198,161,91,.15);
+  outline:none;
+}
+
+/* ---------- Buttons — two clear rows ---------- */
+.form-actions,
+.search-row{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:28px;
+  padding-top:24px;
+  border-top:1px solid var(--line);
+}
+
+.btn{
+  min-width:118px;
+  height:44px;
+  padding:0 20px;
+  border:none;
+  border-radius:10px;
+  font-size:13.5px;
+  font-weight:600;
+  letter-spacing:.3px;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.btn-gold{
+  background:linear-gradient(135deg,var(--gold),var(--gold-deep));
+  color:#fff;
+}
+
+.btn-outline{
+  background:rgba(255,255,255,.6);
+  color:var(--gold-deep);
+  border:1px solid var(--gold);
+}
+
+.btn-outline:hover{
+  background:rgba(255,255,255,.9);
+}
+
+[data-theme="dark"] .btn-outline{
+  background:rgba(255,255,255,.06);
+  color:var(--gold);
+}
+
+[data-theme="dark"] .btn-outline:hover{
+  background:rgba(255,255,255,.12);
+}
+
+.btn-outline:hover{
+  background:rgba(198,161,91,.1);
+}
+
+.btn-danger{
+  background:linear-gradient(135deg,#d45b5b,#a83838);
+  color:#fff;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 22px rgba(0,0,0,.14);
+}
+
+/* ---------- Result tables (from PHP output) ---------- */
+.data-table-wrap{
+  margin-top:32px;
+  border-radius:16px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  box-shadow:0 15px 40px rgba(0,0,0,.06);
+}
+
+.data-table,
+table[border]{
+  width:100%;
+  border-collapse:collapse;
+  background:var(--card);
+}
+
+.data-table thead,
+table[border] tr:first-child{
+  background:rgba(198,161,91,.1);
+}
+
+.data-table thead th,
+table[border] th{
+  padding:14px 16px;
+  text-align:left;
+  font-family:var(--display);
+  font-size:14px;
+  color:var(--gold-deep);
+  border:none !important;
+}
+
+.data-table tbody td,
+table[border] td{
+  padding:12px 16px;
+  font-size:13.5px;
+  color:var(--ink);
+  border-bottom:1px solid var(--line) !important;
+  border-left:none !important;
+  border-right:none !important;
+}
+
+.data-table tbody tr:hover,
+table[border] tr:hover{ background:var(--cream); }
+
+/* ---------- Responsive ---------- */
+@media(max-width:768px){
+  .form-grid{ grid-template-columns:1fr; }
+  .form-page-header h2{ font-size:28px; }
+  .btn{ width:100%; }
+}
+.results-body{ background:var(--cream); }
+.results-page{ max-width:1100px; margin:60px auto; padding:0 30px; }
+.results-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:24px;
+}
+.results-header h2{
+    font-family:var(--display);
+    font-size:28px;
+    color:var(--ink);
+}

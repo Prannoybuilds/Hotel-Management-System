@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hotel Info Form</title>
+    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="form.css">
+     
+</head>
+<body>
+    <form name="f" method="post" action="hotel.php">
+        <h2>Hotel Information</h2>
+
+        <label>Hotel_code</label>
+        <input type="text" name="t1">
+
+        <label>Emp_ID</label>
+        <input type="text" name="t2">
+
+        <label>Location</label>
+        <input type="text" name="t3">
+
+        <label>Hotel_name</label>
+        <input type="text" name="t4">
+
+        <label>Created_date</label>
+        <input type="text" name="t5">
+
+        <label>Created_by</label>
+        <input type="text" name="t6">
+
+        <div class="btn-group">
+            <input type="button" value="New" name="b1" onclick="alert('Form cleared!')">
+            <input type="submit" value="Save" name="b2">
+            <input type="submit" value="Update" name="b3">
+            <input type="submit" value="Delete" name="b4">
+            <input type="submit" value="Allsearch" name="b5">
+            <input type="submit" value="Psearch" name="b6">
+            <input type="submit" value="Spsearch" name="b7">
+            <input type="button" value="Home" name="b8" onclick="window.location.href='home.html'">
+        </div>
+    </form>
+</body>
+</html>

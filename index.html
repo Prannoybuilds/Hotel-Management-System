@@ -1,0 +1,207 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taj Hotels & Resorts | Login</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="form.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+
+.login-hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    padding:0 60px;
+    overflow:hidden;
+}
+
+.login-hero-image{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+}
+
+.login-hero-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(90deg,
+        rgba(10,8,5,.25) 0%,
+        rgba(10,8,5,.08) 45%,
+        rgba(10,8,5,.35) 100%);
+}
+
+.login-panel{
+    position:relative;
+    z-index:10;
+    width:100%;
+    max-width:420px;
+    background:rgba(255,251,244,.82);
+    backdrop-filter:blur(16px);
+    border:1px solid rgba(255,255,255,.5);
+    border-radius:22px;
+    padding:44px 40px 36px;
+    box-shadow:0 30px 70px rgba(0,0,0,.35);
+    text-align:center;
+}
+
+.login-crown{
+    font-size:22px;
+    color:var(--gold-deep);
+    margin-bottom:10px;
+}
+
+.login-panel h1{
+    font-family:var(--display);
+    font-size:28px;
+    font-weight:600;
+    color:var(--ink);
+    margin-bottom:6px;
+}
+
+.login-tagline{
+    font-family:var(--accent);
+    font-style:italic;
+    font-size:16px;
+    color:var(--gold-deep);
+    margin-bottom:20px;
+}
+
+.login-divider{
+    width:60px;
+    height:2px;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);
+    margin:0 auto 26px;
+}
+
+.login-form{
+    text-align:left;
+}
+
+.login-field{
+    margin-bottom:18px;
+}
+
+.login-field label{
+    display:block;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:8px;
+}
+
+.login-field input{
+    width:100%;
+    height:48px;
+    padding:0 16px;
+    border:1px solid var(--line);
+    border-radius:10px;
+    background:#fff;
+    color:var(--ink);
+    font-size:14.5px;
+    transition:.25s;
+}
+
+.login-field input:focus{
+    border-color:var(--gold);
+    box-shadow:0 0 0 3px rgba(198,161,91,.15);
+}
+
+.login-submit{
+    display:block;
+    width:100%;
+    height:50px;
+    margin-top:6px;
+    border-radius:12px;
+    background:linear-gradient(135deg,#d5b06a,#a77b32);
+    color:#fff;
+    font-weight:700;
+    font-size:14.5px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.login-submit:hover{
+    filter:brightness(1.08);
+    transform:translateY(-2px);
+    box-shadow:0 12px 24px rgba(167,123,50,.35);
+}
+
+.login-register-link{
+    display:block;
+    width:100%;
+    text-align:center;
+    margin-top:16px;
+    background:none;
+    border:none;
+    color:var(--ink-soft);
+    font-size:13px;
+    cursor:pointer;
+}
+
+.login-register-link span{
+    color:var(--gold-deep);
+    font-weight:700;
+}
+
+.login-register-link:hover span{
+    text-decoration:underline;
+}
+
+@media (max-width:600px){
+    .login-hero{ padding:0 20px; justify-content:center; }
+    .login-panel{ padding:36px 26px 30px; }
+}
+
+</style>
+</head>
+<body>
+
+<section class="login-hero">
+    <img src="login1.png" class="login-hero-image" alt="">
+    <div class="login-hero-overlay"></div>
+
+    <div class="login-panel">
+        <div class="login-crown">✦</div>
+        <h1>Login Page</h1>
+        <p class="login-tagline">Start Your Luxury Journey With Taj</p>
+        <div class="login-divider"></div>
+
+        <form name="f" method="post" action="login.php" class="login-form">
+            <div class="login-field">
+                <label>Login ID</label>
+                <input type="text" name="t1" placeholder="Enter your Login ID">
+            </div>
+            <div class="login-field">
+                <label>Login Password</label>
+                <input type="password" name="t2" placeholder="Enter your Password">
+            </div>
+
+            <input type="submit" class="login-submit" value="Login Here" name="b1">
+
+            <button type="button" class="login-register-link" onclick="register()">
+                New here? <span>Register an account</span>
+            </button>
+        </form>
+    </div>
+</section>
+
+<script>
+    function register() {
+        window.open("register.html");
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+java project 
+
+test employee
+
+
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Fri Jun 26 12:37:13 2026
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+Enter user-name: hospital/hospital
+
+Connected to:
+Oracle Database 10g Express Edition Release 10.2.0.1.0 - Production
+
+SQL> create table employee
+  2  (
+  3  id nvarchar2(20),
+  4  name nvarchar2(40),
+  5  sal number(6),
+  6  nsal number(6)
+  7  );
+
+Table created.
+
+SQL>
+

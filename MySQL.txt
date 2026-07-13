@@ -1,0 +1,116 @@
+DROP DATABASE IF EXISTS hotel;
+CREATE DATABASE hotel;
+USE hotel;
+-- Department Information
+CREATE TABLE Dept_Info (
+    dept_id  varchar(60) ,
+    dept_name VARCHAR(100),
+    dept_desc VARCHAR(255),
+    status VARCHAR(20),
+    created_date VARCHAR(10),
+    created_by VARCHAR(100)
+);
+
+-- Job Information
+CREATE TABLE Job_Info (
+    job_id  varchar(100),
+    job_title VARCHAR(100),
+    status VARCHAR(20),
+    created_date varchar(100),
+    created_by VARCHAR(100)
+);
+
+-- Employee Information
+CREATE TABLE Emp_Info (
+    emp_id  varchar(100),
+    emp_name VARCHAR(100),
+    address VARCHAR(255),
+    status VARCHAR(20),
+    nationality VARCHAR(50),
+    created_date varchar(100),
+    created_by VARCHAR(100),
+    gender VARCHAR(10),
+    dept_id  varchar(60),
+    job_id  varchar(60)
+);
+
+-- Hotel
+CREATE TABLE Hotel (
+    hotel_code varchar(100), 
+    emp_id  varchar(60),
+    location VARCHAR(100),
+    hotel_name VARCHAR(100),
+    created_date varchar(100),
+    created_by VARCHAR(100)
+);
+
+-- Room Type
+CREATE TABLE Room_Type (
+    room_type_id  varchar(100),
+    no_of_bed  varchar(60),
+    type_name VARCHAR(100),
+    status VARCHAR(20),
+    created_date varchar(100),
+    created_by VARCHAR(100)
+);
+
+-- Room
+CREATE TABLE Room (
+    room_id  varchar(100) ,
+    hotel_code  varchar(60),
+    room_type_id  varchar(60),
+    total_days  varchar(60),
+    room_charge varchar(100),
+    created_date varchar(100),
+    created_by VARCHAR(100)
+);
+
+-- Customer
+CREATE TABLE Customer (
+    customer_id  varchar(100),
+    customer_name VARCHAR(100),
+    address VARCHAR(255),
+    mob_no VARCHAR(15),
+    dob varchar(100),
+    gender VARCHAR(10),
+    marital_status VARCHAR(20),
+    created_date varchar(100),
+    created_by VARCHAR(100)
+);
+
+-- Booking
+CREATE TABLE Booking (
+    booking_id  varchar(100),
+    room_id  varchar(60),
+    customer_id  varchar(60),
+    check_in varchar(100),
+    check_out varchar(100),
+    phone_no VARCHAR(15),
+    reference VARCHAR(100),
+    created_date varchar(100),
+    created_by VARCHAR(100)
+);
+
+-- Invoice
+CREATE TABLE Invoice (
+    invoice_id  varchar(100),
+    customer_id  varchar(60),
+    booking_id  varchar(60),
+    discount varchar(100),
+    gst varchar(100),
+    created_date varchar(100),
+    created_by VARCHAR(100)
+);
+
+-- Payment
+CREATE TABLE Payment (
+    payment_id  varchar(100),
+    invoice_id  varchar(60),
+    payment_date varchar(100),
+    total_amt varchar(100),
+    paid_date varchar(100),
+    created_date varchar(100),
+    created_by VARCHAR(100)
+);
+
+SHOW TABLES;
