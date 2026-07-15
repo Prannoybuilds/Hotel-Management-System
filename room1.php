@@ -1,9 +1,23 @@
+<?php
+
+$conn = mysqli_connect("localhost","root","1234","hotel");
+
+if(!$conn)
+{
+    die("Connection Failed");
+}
+
+$hotel = mysqli_query($conn,"SELECT * FROM hotel ORDER BY hotel_code");
+
+$roomtype = mysqli_query($conn,"SELECT * FROM room_type ORDER BY room_type_id");
+
+?>
  <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Taj Hotels & Resorts | Payment</title>
+<title>Taj Hotels & Resorts | Room</title>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="form.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,7 +58,21 @@
             <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c0-4 3.2-6 7-6s7 2 7 6"/></svg></span>
             <span class="link-text">Customer</span>
         </a>
-        <a href="room.html" class="nav-link">
+        <a href="hotel1.php" class="nav-link">
+    <span class="nav-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M4 21V5h16v16"/>
+            <path d="M9 9h2"/>
+            <path d="M13 9h2"/>
+            <path d="M9 13h2"/>
+            <path d="M13 13h2"/>
+            <path d="M10 21v-4h4v4"/>
+        </svg>
+    </span>
+    <span class="link-text">Hotel</span>
+</a>
+        <a href="room1.php
+" class="nav-link active">
             <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 17V8h18v9"/><path d="M3 13h18"/><path d="M7 8V5h4v3"/></svg></span>
             <span class="link-text">Room</span>
         </a>
@@ -58,17 +86,17 @@
         </a>
 
         <span class="nav-heading">Finance</span>
-        <a href="payment.html" class="nav-link active">
+        <a href="payment1.php" class="nav-link">
             <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 10h19"/></svg></span>
             <span class="link-text">Payment</span>
         </a>
-        <a href="invoice.html" class="nav-link">
+        <a href="invoice1.php" class="nav-link">
             <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h9l3 3v15H6z"/><path d="M9 9h6"/><path d="M9 13h6"/><path d="M9 17h4"/></svg></span>
             <span class="link-text">Invoice</span>
         </a>
 
         <span class="nav-heading">Organisation</span>
-        <a href="emp_info.html" class="nav-link">
+        <a href="emp_info1.php" class="nav-link">
             <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3"/><path d="M5 20c0-4 3-6 7-6s7 2 7 6"/></svg></span>
             <span class="link-text">Employee</span>
         </a>
@@ -99,8 +127,8 @@
 
     <header class="topbar">
         <div class="welcome">
-            <span class="eyebrow">Finance</span>
-            <h2>Payment Management</h2>
+            <span class="eyebrow">Guest Services</span>
+            <h2>Room Information</h2>
         </div>
 
         <div class="top-right">
@@ -109,7 +137,7 @@
                     <circle cx="11" cy="11" r="7"/>
                     <path d="M21 21l-4.3-4.3"/>
                 </svg>
-                <span>Search Payment</span>
+                <span>Search Room</span>
             </a>
 
             <div class="date-time">
@@ -125,29 +153,57 @@
     </header>
 
     <section class="form-hero">
-        <img src="payment.png" class="form-hero-image" alt="">
+        <img src="room.png" class="form-hero-image" alt="">
         <div class="form-hero-overlay"></div>
 
         <div class="form-panel">
 
             <div class="form-page-header">
-                <h2>Payment Information</h2>
-                <p>Billing & Transaction Records</p>
+                <h2>Room Information</h2>
+                <p>Inventory, Charges & Allocation</p>
             </div>
 
-            <form action="payment.php" method="post" name="f" class="form-card">
+            <form action="room.php" method="post" name="f" class="form-card">
                 <div class="form-grid">
-                    <div class="form-group"><label>Payment ID</label><input type="text" name="t1" placeholder="Enter Payment ID"></div>
-                    <div class="form-group"><label>Invoice ID</label><input type="text" name="t2" placeholder="Enter Invoice ID"></div>
-                    <div class="form-group"><label>Payment Date</label><input type="text" name="t3" placeholder="dd-mm-yyyy"></div>
-                    <div class="form-group"><label>Total Amt</label><input type="text" name="t4" placeholder="Enter Total Amount"></div>
-                    <div class="form-group"><label>Paid Date</label><input type="text" name="t5" placeholder="dd-mm-yyyy"></div>
-                    <div class="form-group"><label>Created Date</label><input type="text" name="t6" placeholder="dd-mm-yyyy"></div>
+                    <div class="form-group"><label>Room ID</label><input type="text" name="t1" placeholder="Enter Room ID"></div>
+                 <div class="form-group">
+    <label>Hotel Code</label>
+
+    <select name="t2">
+
+    <?php
+    while($row=mysqli_fetch_assoc($hotel))
+    {
+        echo "<option>".$row['hotel_code']."</option>";
+    }
+    ?>
+
+    </select>
+
+</div>
+                    <div class="form-group">
+    <label>Room Type ID</label>
+
+    <select name="t3">
+
+    <?php
+    while($row=mysqli_fetch_assoc($roomtype))
+    {
+        echo "<option>".$row['room_type_id']."</option>";
+    }
+    ?>
+
+    </select>
+
+</div>  
+                    <div class="form-group"><label>Total Days</label><input type="text" name="t4" placeholder="Enter Total Days"></div>
+                    <div class="form-group"><label>Room Charge</label><input type="text" name="t5" placeholder="Enter Room Charge"></div>
+                    <div class="form-group"><label>Created Date</label><input type="date" name="t6"></div>
                     <div class="form-group full-width"><label>Created By</label><input type="text" name="t7" placeholder="Admin"></div>
                 </div>
 
                 <div class="form-actions">
-                    <input type="button" class="btn btn-outline" value="New" name="b1" onclick="document.forms['f'].reset()">
+                    <input type="button" class="btn btn-outline" value="New" name="b1" onclick="this.form.reset()">
                     <input type="submit" class="btn btn-gold" value="Save" name="b2">
                     <input type="submit" class="btn btn-gold" value="Update" name="b3">
                     <input type="submit" class="btn btn-danger" value="Delete" name="b4">
@@ -155,8 +211,8 @@
 
                 <div class="search-row">
                     <input type="submit" class="btn btn-outline" value="All Search" name="b5">
-                    <input type="submit" class="btn btn-outline" value="P Search" name="b6">
-                    <input type="submit" class="btn btn-outline" value="SP Search" name="b7" onclick="spsearch()">
+                    <input type="submit" class="btn btn-outline" value="Primary Search" name="b6">
+                    <input type="button" class="btn btn-outline" value="Spsearch" onclick="spsearch()">
                     <input type="button" class="btn btn-outline" value="Home" name="b8" onclick="window.location.href='home.html'">
                 </div>
             </form>

@@ -1,3 +1,17 @@
+<?php
+
+$conn = mysqli_connect("localhost","root","1234","hotel");
+
+if(!$conn)
+{
+    die("Connection Failed");
+}
+
+$customer = mysqli_query($conn,"SELECT * FROM customer ORDER BY customer_id");
+
+$booking = mysqli_query($conn,"SELECT * FROM booking ORDER BY booking_id");
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,7 +58,20 @@
             <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c0-4 3.2-6 7-6s7 2 7 6"/></svg></span>
             <span class="link-text">Customer</span>
         </a>
-        <a href="room.html" class="nav-link">
+        <a href="hotel1.php" class="nav-link">
+    <span class="nav-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M4 21V5h16v16"/>
+            <path d="M9 9h2"/>
+            <path d="M13 9h2"/>
+            <path d="M9 13h2"/>
+            <path d="M13 13h2"/>
+            <path d="M10 21v-4h4v4"/>
+        </svg>
+    </span>
+    <span class="link-text">Hotel</span>
+</a>
+        <a href="room1.php" class="nav-link">
             <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 17V8h18v9"/><path d="M3 13h18"/><path d="M7 8V5h4v3"/></svg></span>
             <span class="link-text">Room</span>
         </a>
@@ -58,17 +85,18 @@
         </a>
 
         <span class="nav-heading">Finance</span>
-        <a href="payment.html" class="nav-link">
+        <a href="payment1.php" class="nav-link">
             <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 10h19"/></svg></span>
             <span class="link-text">Payment</span>
         </a>
-        <a href="invoice.html" class="nav-link active">
+        <a href="invoice1.php
+" class="nav-link active">
             <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h9l3 3v15H6z"/><path d="M9 9h6"/><path d="M9 13h6"/><path d="M9 17h4"/></svg></span>
             <span class="link-text">Invoice</span>
         </a>
 
         <span class="nav-heading">Organisation</span>
-        <a href="emp_info.html" class="nav-link">
+        <a href="emp_info1.php" class="nav-link">
             <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3"/><path d="M5 20c0-4 3-6 7-6s7 2 7 6"/></svg></span>
             <span class="link-text">Employee</span>
         </a>
@@ -138,8 +166,38 @@
             <form action="invoice.php" method="post" name="f" class="form-card">
                 <div class="form-grid">
                     <div class="form-group"><label>Invoice ID</label><input type="text" name="t1" placeholder="Enter Invoice ID"></div>
-                    <div class="form-group"><label>Customer ID</label><input type="text" name="t2" placeholder="Enter Customer ID"></div>
-                    <div class="form-group"><label>Booking ID</label><input type="text" name="t3" placeholder="Enter Booking ID"></div>
+                    <div class="form-group">
+
+<label>Customer ID</label>
+
+<select name="t2">
+
+<?php
+while($row=mysqli_fetch_assoc($customer))
+{
+    echo "<option>".$row['customer_id']."</option>";
+}
+?>
+
+</select>
+
+</div>
+                    <div class="form-group">
+
+<label>Booking ID</label>
+
+<select name="t3">
+
+<?php
+while($row=mysqli_fetch_assoc($booking))
+{
+    echo "<option>".$row['booking_id']."</option>";
+}
+?>
+
+</select>
+
+</div>
                     <div class="form-group"><label>Discount</label><input type="text" name="t4" placeholder="Enter Discount"></div>
                     <div class="form-group"><label>GST</label><input type="text" name="t5" placeholder="Enter GST"></div>
                     <div class="form-group"><label>Created Date</label><input type="text" name="t6" placeholder="dd-mm-yyyy"></div>

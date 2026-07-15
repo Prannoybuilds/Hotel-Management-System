@@ -1,9 +1,22 @@
- <!DOCTYPE html>
+ <?php
+
+$conn = mysqli_connect("localhost","root","1234","hotel");
+
+if(!$conn)
+{
+    die("Connection Failed");
+}
+
+$invoice = mysqli_query($conn,
+"SELECT invoice_id FROM invoice ORDER BY invoice_id");
+
+?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Taj Hotels & Resorts | Employee</title>
+<title>Taj Hotels & Resorts | Payment</title>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="form.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,7 +57,20 @@
             <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c0-4 3.2-6 7-6s7 2 7 6"/></svg></span>
             <span class="link-text">Customer</span>
         </a>
-        <a href="room.html" class="nav-link">
+        <a href="hotel1.php" class="nav-link">
+    <span class="nav-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M4 21V5h16v16"/>
+            <path d="M9 9h2"/>
+            <path d="M13 9h2"/>
+            <path d="M9 13h2"/>
+            <path d="M13 13h2"/>
+            <path d="M10 21v-4h4v4"/>
+        </svg>
+    </span>
+    <span class="link-text">Hotel</span>
+</a>
+        <a href="room1.php" class="nav-link">
             <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 17V8h18v9"/><path d="M3 13h18"/><path d="M7 8V5h4v3"/></svg></span>
             <span class="link-text">Room</span>
         </a>
@@ -58,17 +84,19 @@
         </a>
 
         <span class="nav-heading">Finance</span>
-        <a href="payment.html" class="nav-link">
+        <a href="payment1.php
+" class="nav-link active">
             <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 10h19"/></svg></span>
             <span class="link-text">Payment</span>
         </a>
-        <a href="invoice.html" class="nav-link">
+        <a href="invoice1.php" class="nav-link">
             <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h9l3 3v15H6z"/><path d="M9 9h6"/><path d="M9 13h6"/><path d="M9 17h4"/></svg></span>
             <span class="link-text">Invoice</span>
         </a>
 
         <span class="nav-heading">Organisation</span>
-        <a href="emp_info.html" class="nav-link active">
+        <a href="emp_info1.php
+" class="nav-link">
             <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3"/><path d="M5 20c0-4 3-6 7-6s7 2 7 6"/></svg></span>
             <span class="link-text">Employee</span>
         </a>
@@ -99,8 +127,8 @@
 
     <header class="topbar">
         <div class="welcome">
-            <span class="eyebrow">Human Resources</span>
-            <h2>Employee Management</h2>
+            <span class="eyebrow">Finance</span>
+            <h2>Payment Management</h2>
         </div>
 
         <div class="top-right">
@@ -109,7 +137,7 @@
                     <circle cx="11" cy="11" r="7"/>
                     <path d="M21 21l-4.3-4.3"/>
                 </svg>
-                <span>Search Employee</span>
+                <span>Search Payment</span>
             </a>
 
             <div class="date-time">
@@ -125,56 +153,40 @@
     </header>
 
     <section class="form-hero">
-        <img src="employee.png" class="form-hero-image" alt="">
+        <img src="payment.png" class="form-hero-image" alt="">
         <div class="form-hero-overlay"></div>
 
         <div class="form-panel">
 
             <div class="form-page-header">
-                <h2>Employee Registration</h2>
-                <p>Staff & Personnel Records</p>
+                <h2>Payment Information</h2>
+                <p>Billing & Transaction Records</p>
             </div>
 
-            <form action="emp_info.php" method="post" name="f" class="form-card">
+            <form action="payment.php" method="post" name="f" class="form-card">
                 <div class="form-grid">
-                    <div class="form-group"><label>Employee ID</label><input type="text" name="t1" placeholder="Enter Employee ID"></div>
-                    <div class="form-group"><label>Employee Name</label><input type="text" name="t2" placeholder="Enter Full Name"></div>
-                    <div class="form-group full-width"><label>Address</label><input type="text" name="t3" placeholder="Street, City, State"></div>
-                    <div class="form-group"><label>Status</label><input type="text" name="t4" placeholder="Active / Inactive"></div>
-                    <div class="form-group"><label>Nationality</label><input type="text" name="t5" placeholder="Enter Nationality"></div>
-                    <div class="form-group"><label>Created Date</label><input type="date" name="t6"></div>
-                    <div class="form-group"><label>Created By</label><input type="text" name="t7" placeholder="Admin"></div>
+                    <div class="form-group"><label>Payment ID</label><input type="text" name="t1" placeholder="Enter Payment ID"></div>
                     <div class="form-group">
-                        <label>Gender</label>
-                        <select name="t8">
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Dept ID</label>
-                        <select name="t9">
-                            <?php 
-                                $conn=mysqli_connect("localhost","root", "1234","hotel");  
-                                $sql = mysqli_query($conn,"SELECT dept_id FROM dept_info ORDER BY dept_id");
-                                while ($db_field = mysqli_fetch_assoc($sql)) {
-                                    echo "<option>".$db_field['dept_id']."</option>";
-                                }
-                            ?>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Job ID</label>
-                        <select name="t10">
-                            <?php 
-                                $conn=mysqli_connect("localhost","root", "1234","hotel");  
-                                $sql = mysqli_query($conn,"SELECT job_id FROM job_info ORDER BY job_id");
-                                while ($db_field = mysqli_fetch_assoc($sql)) {
-                                    echo "<option>".$db_field['job_id']."</option>";
-                                }
-                            ?>
-                        </select>
-                    </div>
+
+<label>Invoice ID</label>
+
+<select name="t2">
+
+<?php
+while($row=mysqli_fetch_assoc($invoice))
+{
+    echo "<option>".$row['invoice_id']."</option>";
+}
+?>
+
+</select>
+
+</div>
+                    <div class="form-group"><label>Payment Date</label><input type="text" name="t3" placeholder="dd-mm-yyyy"></div>
+                    <div class="form-group"><label>Total Amt</label><input type="text" name="t4" placeholder="Enter Total Amount"></div>
+                    <div class="form-group"><label>Paid Date</label><input type="text" name="t5" placeholder="dd-mm-yyyy"></div>
+                    <div class="form-group"><label>Created Date</label><input type="text" name="t6" placeholder="dd-mm-yyyy"></div>
+                    <div class="form-group full-width"><label>Created By</label><input type="text" name="t7" placeholder="Admin"></div>
                 </div>
 
                 <div class="form-actions">
@@ -185,9 +197,9 @@
                 </div>
 
                 <div class="search-row">
-                    <input type="submit" class="btn btn-outline" value="Allsearch" name="b5">
-                    <input type="submit" class="btn btn-outline" value="Psearch" name="b6">
-                    <input type="button" class="btn btn-outline" value="Spsearch" name="b7" onclick="spearch()">
+                    <input type="submit" class="btn btn-outline" value="All Search" name="b5">
+                    <input type="submit" class="btn btn-outline" value="P Search" name="b6">
+                    <input type="submit" class="btn btn-outline" value="SP Search" name="b7" onclick="spsearch()">
                     <input type="button" class="btn btn-outline" value="Home" name="b8" onclick="window.location.href='home.html'">
                 </div>
             </form>
@@ -253,7 +265,7 @@ themeToggle.addEventListener("click", () => {
   applyTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark");
 });
 
-function spearch(){ window.open("spsearch.html"); }
+function spsearch(){ window.open("spsearch.html"); }
 </script>
 </body>
 </html>

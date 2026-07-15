@@ -114,3 +114,10 @@ CREATE TABLE Payment (
 );
 
 SHOW TABLES;
+
+
+create table login
+(
+id nvarchar2(30),
+pwd nvarchar2(30)
+);

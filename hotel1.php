@@ -1,9 +1,9 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Taj Hotels & Resorts | Department</title>
+<title>Taj Hotels & Resorts | Hotel</title>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="form.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,7 +44,9 @@
             <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c0-4 3.2-6 7-6s7 2 7 6"/></svg></span>
             <span class="link-text">Customer</span>
         </a>
-        <a href="hotel1.php" class="nav-link">
+
+
+        <a href="hotel1.php" class="nav-link active">
     <span class="nav-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
             <path d="M4 21V5h16v16"/>
@@ -57,6 +59,8 @@
     </span>
     <span class="link-text">Hotel</span>
 </a>
+
+
         <a href="room1.php" class="nav-link">
             <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 17V8h18v9"/><path d="M3 13h18"/><path d="M7 8V5h4v3"/></svg></span>
             <span class="link-text">Room</span>
@@ -65,7 +69,7 @@
             <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h2"/><path d="M14 7h2"/><path d="M8 11h2"/><path d="M14 11h2"/><path d="M8 15h8"/></svg></span>
             <span class="link-text">Room Type</span>
         </a>
-        <a href="booking1.php" class="nav-link">
+        <a href="booking1.php" class="nav-link ">
             <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M8 3v4"/><path d="M16 3v4"/></svg></span>
             <span class="link-text">Booking</span>
         </a>
@@ -85,7 +89,7 @@
             <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3"/><path d="M5 20c0-4 3-6 7-6s7 2 7 6"/></svg></span>
             <span class="link-text">Employee</span>
         </a>
-        <a href="dept_info.html" class="nav-link active">
+        <a href="dept_info.html" class="nav-link">
             <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="3" width="14" height="18"/><path d="M9 7h2"/><path d="M13 7h2"/><path d="M9 11h2"/><path d="M13 11h2"/><path d="M9 15h6"/></svg></span>
             <span class="link-text">Department</span>
         </a>
@@ -112,8 +116,8 @@
 
     <header class="topbar">
         <div class="welcome">
-            <span class="eyebrow">Organisation</span>
-            <h2>Department Management</h2>
+            <span class="eyebrow">Guest Services</span>
+            <h2>Hotel Management</h2>
         </div>
 
         <div class="top-right">
@@ -122,7 +126,7 @@
                     <circle cx="11" cy="11" r="7"/>
                     <path d="M21 21l-4.3-4.3"/>
                 </svg>
-                <span>Search Department</span>
+                <span>Search Hotel</span>
             </a>
 
             <div class="date-time">
@@ -138,38 +142,150 @@
     </header>
 
     <section class="form-hero">
-        <img src="department.png" class="form-hero-image" alt="">
+      <img src="hotel.png" class="form-hero-image" alt="">
         <div class="form-hero-overlay"></div>
 
         <div class="form-panel">
 
             <div class="form-page-header">
-                <h2>Department Registration</h2>
-                <p>Organisational Structure</p>
+                <h2>Hotel Information</h2>
+                <p>Property & Branch Management</p>
             </div>
 
-            <form action="dept_info.php" method="post" name="f" class="form-card">
-                <div class="form-grid">
-                    <div class="form-group"><label>Dept ID</label><input type="text" name="t1" placeholder="Enter Department ID"></div>
-                    <div class="form-group"><label>Dept Name</label><input type="text" name="t2" placeholder="Enter Department Name"></div>
-                    <div class="form-group full-width"><label>Dept Description</label><input type="text" name="t3" placeholder="Brief description"></div>
-                    <div class="form-group"><label>Status</label><input type="text" name="t4" placeholder="Active / Inactive"></div>
-                    <div class="form-group"><label>Created Date</label><input type="text" name="t5" placeholder="YYYY-MM-DD"></div>
-                    <div class="form-group"><label>Created By</label><input type="text" name="t6" placeholder="Admin"></div>
-                </div>
+<?php
+
+$conn = mysqli_connect("localhost","root","1234","hotel");
+
+if(!$conn)
+{
+    die("Connection Failed");
+}
+
+$sql=mysqli_query($conn,"SELECT * FROM emp_info ORDER BY emp_id");
+
+?>
+
+            <form action="hotel.php" method="post" name="f" class="form-card">
+                 <div class="form-grid">
+
+<div class="form-group">
+
+<label>Hotel Code</label>
+
+<input type="text" name="t1" placeholder="Enter Hotel Code">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Employee ID</label>
+
+<select name="t2">
+
+<?php
+
+while($row=mysqli_fetch_assoc($sql))
+{
+    echo "<option>".$row['emp_id']."</option>";
+}
+
+?>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Location</label>
+
+<select name="t3">
+
+<option>Andhra Pradesh</option>
+<option>Arunachal Pradesh</option>
+<option>Assam</option>
+<option>Bihar</option>
+<option>Chhattisgarh</option>
+<option>Goa</option>
+<option>Gujarat</option>
+<option>Haryana</option>
+<option>Himachal Pradesh</option>
+<option>Jharkhand</option>
+<option>Karnataka</option>
+<option>Kerala</option>
+<option>Madhya Pradesh</option>
+<option>Maharashtra</option>
+<option>Manipur</option>
+<option>Meghalaya</option>
+<option>Mizoram</option>
+<option>Nagaland</option>
+<option>Odisha</option>
+<option>Punjab</option>
+<option>Rajasthan</option>
+<option>Sikkim</option>
+<option>Tamil Nadu</option>
+<option>Telangana</option>
+<option>Tripura</option>
+<option>Uttar Pradesh</option>
+<option>Uttarakhand</option>
+<option>West Bengal</option>
+
+<option>Andaman and Nicobar Islands</option>
+<option>Chandigarh</option>
+<option>Dadra and Nagar Haveli and Daman and Diu</option>
+<option>Delhi</option>
+<option>Jammu and Kashmir</option>
+<option>Ladakh</option>
+<option>Lakshadweep</option>
+<option>Puducherry</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Hotel Name</label>
+
+<input type="text" name="t4" placeholder="Enter Hotel Name">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Created Date</label>
+
+<input type="text" name="t5" placeholder="dd-mm-yyyy">
+
+</div>
+
+
+<div class="form-group full-width">
+
+<label>Created By</label>
+
+<input type="text" name="t6" placeholder="Admin">
+
+</div>
+
+</div>
 
                 <div class="form-actions">
-                    <input type="button" class="btn btn-outline" value="New" name="b1" onclick="document.forms['f'].reset()">
+                    <input type="button" class="btn btn-outline" value="New" onclick="document.forms['f'].reset();">
                     <input type="submit" class="btn btn-gold" value="Save" name="b2">
                     <input type="submit" class="btn btn-gold" value="Update" name="b3">
                     <input type="submit" class="btn btn-danger" value="Delete" name="b4">
                 </div>
 
                 <div class="search-row">
-                    <input type="submit" class="btn btn-outline" value="Allsearch" name="b5">
-                    <input type="submit" class="btn btn-outline" value="Psearch" name="b6">
-                    <input type="button" class="btn btn-outline" value="Spsearch" name="b7" onclick="spsearch()">
-                    <input type="button" class="btn btn-outline" value="Home" name="b8" onclick="window.location.href='home.html'">
+                    <input type="submit" class="btn btn-outline" value="All Search" name="b5">
+                    <input type="submit" class="btn btn-outline" value="P Search" name="b6">
+                    <input type="submit" class="btn btn-outline" value="SP Search" onclick="spsearch()" name="b7">
+                    <input type="button" class="btn btn-outline" value="Home" onclick="window.location.href='home.html'">
                 </div>
             </form>
         </div>
