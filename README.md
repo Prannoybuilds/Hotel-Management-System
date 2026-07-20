@@ -500,7 +500,7 @@ https://github.com/Prannoybuilds
 
 ### LinkedIn
 
-[(Add your LinkedIn Profile)](https://www.linkedin.com/in/prannoy-sen-3aa64b3a0/)
+(https://www.linkedin.com/in/prannoy-sen-3aa64b3a0/)
 
 ---
 
