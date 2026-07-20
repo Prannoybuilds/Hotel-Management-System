@@ -22,7 +22,7 @@
 
 🚀 **Coming Soon**
 
-https://your-live-demo-link.com
+ 
 
 ---
 
@@ -500,7 +500,7 @@ https://github.com/Prannoybuilds
 
 ### LinkedIn
 
-(Add your LinkedIn Profile)
+[(Add your LinkedIn Profile)](https://www.linkedin.com/in/prannoy-sen-3aa64b3a0/)
 
 ---
 
