@@ -18,6 +18,30 @@
 
 ---
 
+---
+
+# 📸 Hotel Dashboard Overview
+
+<p align="center">
+  <b>Luxury Hotel Management Dashboard</b><br><br>
+
+  <table>
+    <tr>
+      <td align="center">
+        <img src="screenshots/dashboard11.png" width="100%" alt="Dashboard 1"/>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <img src="screenshots/dashboard12.png" width="100%" alt="Dashboard 2"/>
+      </td>
+    </tr>
+  </table>
+
+</p>
+
+---
+
 ### 🌐 Live Demo
 
 🚀 **Coming Soon**
